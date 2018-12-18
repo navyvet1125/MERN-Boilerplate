@@ -4,16 +4,25 @@ import { compose } from 'redux'
 import requireAuth from './requireAuth'
 
 class Feature extends Component {
+	renderComments(){
+		return this.props.comments.map(comment =>{
+			return <li key={comment}>{comment}</li>;
+		});
+	}
 	render(){
-		return <div>
+		return (
+			<div>
 				Welcome {this.props.email}!
-			</div>
+				</div>
+		);
 	}
 }
 
-
 function mapStateToProps (state){
-  return { email: state.auth.email }
+  return {
+		email: state.auth.email,
+		comments: state.comments
+	}
 }
 
 export default compose(connect(mapStateToProps), requireAuth)(Feature)

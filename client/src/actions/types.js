@@ -1,2 +1,5 @@
 export const AUTH_USER = 'AUTH_USER'
 export const AUTH_ERR = 'AUTH_ERR'
+export const SAVE_COMMENT = 'SAVE_COMMENT'
+export const FETCH_COMMENTS = 'FETCH_COMMENTS'
+export const FETCH_ERR = 'FETCH_ERR'

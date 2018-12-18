@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 
+
 import reducers from './reducers';
 import App from './components/App';
 import Welcome from './components/Welcome';
@@ -12,9 +13,13 @@ import Signup from './components/auth/Signup';
 import Signin from './components/auth/Signin';
 import Signout from './components/auth/Signout';
 import Feature from './components/Feature'
-
+import CommentBox from './components/features/CommentBox'
+import CommentList from './components/features/CommentList'
 const store = createStore(reducers, {
-	auth: { authenticated: localStorage.getItem('token')}
+	auth: {
+		authenticated: localStorage.getItem('token'),
+		email:localStorage.getItem('email')
+	}
 }, applyMiddleware(reduxThunk))
 
 ReactDOM.render(
@@ -25,7 +30,9 @@ ReactDOM.render(
         <Route path="/signup" component={Signup} />
 				<Route path="/signin" component={Signin} />
 				<Route path="/signout" component={Signout} />
-        <Route path="/feature" component={Feature} />
+				<Route path="/feature" component={Feature} />
+				<Route path="/feature/comment" component={CommentBox} />
+				<Route path="/feature/list" component={CommentList} />
       </App>
     </BrowserRouter>
   </Provider>,
