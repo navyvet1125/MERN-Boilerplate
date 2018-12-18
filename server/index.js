@@ -7,6 +7,8 @@ const app = express();
 const router = require('./router');
 const mongoose = require('mongoose');
 const bluebird = require('bluebird');
+const cors = require('cors')
+
 // DB Setup
 mongoose.Promise = bluebird;
 mongoose.connect('mongodb://localhost:auth/auth', { useNewUrlParser: true })
@@ -15,6 +17,7 @@ mongoose.connect('mongodb://localhost:auth/auth', { useNewUrlParser: true })
 
 // App Setup
 app.use(morgan('combined'));
+app.use(cors())
 app.use(bodyParser.json({ type: '*/*' }));
 router(app);
 

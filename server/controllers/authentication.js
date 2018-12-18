@@ -19,8 +19,8 @@ exports.signup = (req, res, next) => {
 	// If user already exists, send an error, else create a new user
 	// Error handling
 	User.findOne({email})
-	.then( existingUser => existingUser? res.status(422).send({ error: 'Email is in use' }): new User({email, password}).save())
+	.then( existingUser => existingUser? res.status(422).send('Email is in use' ): new User({email, password}).save())
 	.then( user => res.status(200).json({token: tokenForUser(user)}))
-	.catch( err => res.status(500).send({ error: 'An error has occured.  Please wait a few minutes and try again', err}))
+	.catch( err => res.status(500).send('An error has occured.  Please wait a few minutes and try again'))
 
 }
